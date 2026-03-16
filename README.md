@@ -1,6 +1,6 @@
 # STAT 5243 Project 2 Demo
 
-This repository contains a polished `Python Shiny` web application for STAT 5243 Project 2. The app lets users upload a dataset, clean and preprocess it, engineer new features, explore the data through interactive visualizations, and export the processed result.
+This repository contains a deployable `Streamlit` web application for STAT 5243 Project 2. The app lets users upload a dataset, clean and preprocess it, engineer new features, explore the data through interactive visualizations, and export the processed result.
 
 ## Features
 
@@ -23,7 +23,9 @@ This repository contains a polished `Python Shiny` web application for STAT 5243
 
 ## Project Structure
 
-- [app.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/app.py): main Shiny application
+- [streamlit_app.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/streamlit_app.py): main Streamlit deployment entrypoint
+- [core.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/core.py): shared data loading, cleaning, feature engineering, and EDA helpers
+- [app.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/app.py): earlier Python Shiny prototype retained for reference
 - [requirements.txt](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/requirements.txt): Python dependencies
 - [report.md](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/report.md): short report draft that can be adapted for submission
 
@@ -49,23 +51,24 @@ python -m pip install -r requirements.txt
 
 ```bash
 conda activate py311
-shiny run --reload app.py
+streamlit run streamlit_app.py
 ```
 
-By default, Shiny will print a local URL such as `http://127.0.0.1:8000`.
+By default, Streamlit will print a local URL such as `http://127.0.0.1:8501`.
 
 ## Deployment
 
-You can deploy the app to a platform that supports Python Shiny, such as:
+This repository is ready for `Streamlit Community Cloud` deployment:
 
-- [Posit Connect Cloud](https://connect.posit.cloud/)
-- [shinyapps.io](https://www.shinyapps.io/) if you adapt the deployment workflow for Python Shiny
-- a generic container or cloud VM
+1. Push the repo to GitHub
+2. Create a new app in Streamlit Community Cloud
+3. Select this repository and set the main file path to `streamlit_app.py`
+4. Let Streamlit install `requirements.txt`
 
-For the course report, include the deployment link and a short description of the supported workflow.
+For the course report, include the public deployment link.
 
 ## Notes For Submission
 
 - Add team member names and contributions to the report before submitting
-- If your instructor strongly prefers `R Shiny`, this project can be used as the demo/prototype while the report explicitly notes that the implementation is in Python Shiny
-- If needed, I can also convert this version into an `R Shiny` structure later
+- The deployed app entrypoint is `streamlit_app.py`
+- The repository also keeps the earlier Shiny prototype in case you want to compare UI approaches or reuse pieces later
