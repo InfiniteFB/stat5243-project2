@@ -1,0 +1,17 @@
+[
+  {
+    "category":"A",
+    "value":10,
+    "score":0.5
+  },
+  {
+    "category":"B",
+    "value":20,
+    "score":0.8
+  },
+  {
+    "category":"C",
+    "value":15,
+    "score":0.65
+  }
+]
