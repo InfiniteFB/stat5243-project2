@@ -1,6 +1,6 @@
 # STAT 5243 Project 2 Demo
 
-This repository contains a deployable `Streamlit` web application for STAT 5243 Project 2. The app lets users upload a dataset, clean and preprocess it, engineer new features, explore the data through interactive visualizations, and export the processed result.
+This repository contains a deployable interactive data application for STAT 5243 Project 2. The primary deployment target is the `Python Shiny` app in `app.py`, which preserves the polished interface and interaction model built for the project. A secondary `Streamlit` entrypoint is also included for hosting flexibility.
 
 ## Features
 
@@ -23,11 +23,13 @@ This repository contains a deployable `Streamlit` web application for STAT 5243 
 
 ## Project Structure
 
-- [streamlit_app.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/streamlit_app.py): main Streamlit deployment entrypoint
-- [core.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/core.py): shared data loading, cleaning, feature engineering, and EDA helpers
-- [app.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/app.py): earlier Python Shiny prototype retained for reference
+- [app.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/app.py): main Python Shiny application for deployment
+- [streamlit_app.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/streamlit_app.py): optional Streamlit deployment entrypoint
+- [core.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/core.py): shared data loading, cleaning, feature engineering, and EDA helpers used by the Streamlit variant
 - [requirements.txt](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/requirements.txt): Python dependencies
 - [report.md](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/report.md): short report draft that can be adapted for submission
+- [manifest.json](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/manifest.json): generated deployment manifest for Python Shiny
+- [.python-version](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/.python-version): pins the Python version for deployment
 
 ## Miniforge Environment
 
@@ -47,28 +49,45 @@ conda activate py311
 python -m pip install -r requirements.txt
 ```
 
-## Run The App
+## Run The Shiny App
+
+```bash
+conda activate py311
+shiny run --reload app.py
+```
+
+By default, Shiny will print a local URL such as `http://127.0.0.1:8000`.
+
+## Optional Streamlit Variant
+
+If you want to run the lighter secondary version instead:
 
 ```bash
 conda activate py311
 streamlit run streamlit_app.py
 ```
 
-By default, Streamlit will print a local URL such as `http://127.0.0.1:8501`.
-
 ## Deployment
 
-This repository is ready for `Streamlit Community Cloud` deployment:
+This repository is ready for `Python Shiny` deployment.
+
+### Posit Connect Cloud
 
 1. Push the repo to GitHub
-2. Create a new app in Streamlit Community Cloud
-3. Select this repository and set the main file path to `streamlit_app.py`
-4. Let Streamlit install `requirements.txt`
+2. Create a new app in Posit Connect Cloud
+3. Select this repository and set the app entrypoint to `app.py`
+4. Let the platform install `requirements.txt`
+
+### shinyapps.io with rsconnect-python
+
+1. Install `rsconnect-python`
+2. Add your shinyapps.io account token and secret
+3. Deploy this directory with `app.py` as the entrypoint
 
 For the course report, include the public deployment link.
 
 ## Notes For Submission
 
 - Add team member names and contributions to the report before submitting
-- The deployed app entrypoint is `streamlit_app.py`
-- The repository also keeps the earlier Shiny prototype in case you want to compare UI approaches or reuse pieces later
+- The primary deployed app entrypoint is `app.py`
+- `manifest.json` and `.python-version` are already present to make Python Shiny deployment more predictable
