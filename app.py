@@ -655,7 +655,21 @@ app_ui = ui.page_navbar(
                     {"class": "editor-block", "id": "missing-editor"},
                     ui.div({"class": "text-muted"}, "Missingness panel"),
                     ui.h4("Missingness by column"),
-                    ui.p({"class": "text-muted"}, "Focus the missing-value chart on the most relevant columns."),
+                    ui.p(
+                        {"class": "text-muted"},
+                        "Inspect missingness on raw data by default, or switch to a later pipeline stage when needed.",
+                    ),
+                    ui.input_select(
+                        "missing_data_source",
+                        "Dataset source",
+                        {
+                            "raw": "Raw data",
+                            "processed": "After cleaning",
+                            "featured": "After feature engineering",
+                            "filtered": "Current EDA filtered view",
+                        },
+                        selected="raw",
+                    ),
                     ui.input_select(
                         "missing_chart_type",
                         "Chart type",
@@ -1424,6 +1438,17 @@ def server(input, output, session):
             return df
         return df[df[col].astype(str).isin(selected_values)]
 
+    @reactive.calc
+    def missingness_data() -> pd.DataFrame:
+        source = input.missing_data_source()
+        if source == "processed":
+            return processed_data()
+        if source == "featured":
+            return featured_data()
+        if source == "filtered":
+            return filtered_eda_data()
+        return raw_data()
+
     @render.data_frame
     def summary_stats():
         if input.summary_chart_type() != "table":
@@ -1459,7 +1484,7 @@ def server(input, output, session):
 
     @render_widget
     def missing_plot():
-        df = filtered_eda_data()
+        df = missingness_data()
         missing = (
             df.isna()
             .sum()
