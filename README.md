@@ -23,13 +23,12 @@ This repository contains a deployable interactive data application for STAT 5243
 
 ## Project Structure
 
-- [app.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/app.py): main Python Shiny application for deployment
-- [streamlit_app.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/streamlit_app.py): optional Streamlit deployment entrypoint
-- [core.py](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/core.py): shared data loading, cleaning, feature engineering, and EDA helpers used by the Streamlit variant
-- [requirements.txt](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/requirements.txt): Python dependencies
-- [report.md](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/report.md): short report draft that can be adapted for submission
-- [manifest.json](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/manifest.json): generated deployment manifest for Python Shiny
-- [.python-version](/Users/yedoubleeagles/BaiduNetdiskWorkspace/columbia/2026%20Spring/STAT%205243/p2/.python-version): pins the Python version for deployment
+- `app.py`: main Python Shiny application for deployment
+- `streamlit_app.py`: optional Streamlit deployment entrypoint
+- `core.py`: shared data loading, cleaning, feature engineering, and EDA helpers used by the Streamlit variant
+- `requirements.txt`: Python dependencies
+- `manifest.json`: generated deployment manifest for Python Shiny
+- `.python-version`: pins the Python version for deployment
 
 ## Miniforge Environment
 
@@ -86,8 +85,3 @@ This repository is ready for `Python Shiny` deployment.
 
 For the course report, include the public deployment link.
 
-## Notes For Submission
-
-- Add team member names and contributions to the report before submitting
-- The primary deployed app entrypoint is `app.py`
-- `manifest.json` and `.python-version` are already present to make Python Shiny deployment more predictable
