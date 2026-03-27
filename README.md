@@ -85,3 +85,7 @@ This repository is ready for `Python Shiny` deployment.
 
 For the course report, include the public deployment link.
 
+## GitHub Copilot Model Selection
+
+This repository is used with GitHub Copilot Pro. For guidance on selecting Claude Opus 4.5/4.6 models and enabling Fast Mode in Copilot Chat, VS Code, or JetBrains IDEs, see [COPILOT_MODEL_GUIDE.md](./COPILOT_MODEL_GUIDE.md).
+
